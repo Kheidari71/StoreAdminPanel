@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    overflow-x: hidden;
+}
+
+.active_element{
+    display: none;
+}
+.active_link .active_element{
+    display: block !important;
+}
