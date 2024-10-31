@@ -10,7 +10,7 @@ import {
   FaTags,
   FaPalette,
   FaPercentage,
- 
+  BiPalette,
   FaUsers,
   FaQuestionCircle,
   FaComments,
@@ -31,9 +31,11 @@ const sidebarArray = [
 
   {
     title: "Store", items: [
-      { title: "Manage Product", icon: <FaStore className="mr-6"/> ,path: '/manageProduct'},
       { title: "Manage Product Groups", icon: <FaBoxes className="mr-6" /> ,path: '/manageProductGroups'},
+      { title: "Manage Product", icon: <FaStore className="mr-6"/> ,path: '/manageProduct'},
+      
       { title: "Manage Brands", icon: <FaCogs className="mr-6" />,path: '/managebrands' },
+      { title: "Manage Colors", icon: <FaPalette className="mr-6" />,path: '/manageColors' }
     ]
   },
   {
@@ -81,7 +83,7 @@ const Sidebar = () => {
           } w-72 lg:w-72 transition-transform duration-300 ease-in-out z-50`}
         style={{ overflowY: "auto" }} // Prevents vertical overflow
       >
-        <div className=" flex items-center justify-end px-4 pt-4 ">
+        <div className=" flex items-center justify-end px-6 pt-6 ">
           <button onClick={toggleSidebar}>
             <AiOutlineClose className="text-blue-500 dark:text-gray-300" size={24} />
           </button>
@@ -106,7 +108,7 @@ const Sidebar = () => {
       </div>
 
       {/* Hamburger Menu Button */}
-      <div className="text-menu_item_on lg:block fixed top-4 left-4 z-50">
+      <div className="text-menu_item_on lg:block fixed top-6 left-4 z-50">
         <Hamburger toggleSidebar={toggleSidebar} icon={  <AiOutlineMenu className="text-blue-500 dark:text-gray-300" size={30} />}/>
       </div>
     </div>

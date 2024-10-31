@@ -3,15 +3,15 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthStatus } from '../../hooks/authHook';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
-const AuthLayout = ({ theme, setteme }) => {
+const AuthLayout = () => {
     const {isLoading ,isLoggedIn} = useAuthStatus()
    
-return isLoading ? <LoadingSpinner theme={theme} setteme={setteme}/> : isLoggedIn ? (
+return isLoading ? <LoadingSpinner /> : isLoggedIn ? (
     <Navigate to="/"/>
 ):(
 <div>
 <Routes>
-<Route path="/login" element={<Login theme={theme} setteme={setteme} />} />
+<Route path="/login" element={<Login/>} />
 </Routes>
 </div>
 )

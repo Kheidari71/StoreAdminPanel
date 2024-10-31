@@ -33,8 +33,8 @@ const tableArray= [
 
 const Dashboard = () => {
     return(
-        <div >
-          <div className="flex flex-wrap justify-center items-center mx-auto space-y-4 lg:space-y-0 mt-11">
+        <div>
+          <div className="flex flex-wrap justify-center items-center mx-auto mt-11">
          {cardArray.map(item=>(<Card {...item}/>))}
            <div/>
     
@@ -43,7 +43,7 @@ const Dashboard = () => {
           {/* chart and table */}
           {/*diffrence between lg:space-x-12 & mx-10*/}
           {/*Actions in table isnt at the middle*/}
-          <div className="flex flex-col lg:flex-row lg:space-x-12 pb-40 justify-center items-center mt-11 mx-10">
+          <div className="flex flex-col lg:flex-row lg:space-x-12 pb-40 justify-center items-center mt-11 px-12">
             {/* Chart Container */}
             <div className="flex justify-center items-center w-full lg:w-1/2">
               <img className="w-full h-auto max-w-lg" src={ChartImage} alt="chart" />

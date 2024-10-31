@@ -16,7 +16,7 @@ const ManageProducts = () => {
     <div className="w-full p-8">
       {/* Title & Search Bar */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-semibold">Manage Product Group</h1>
+        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Product</h1>
 
         <div className="flex items-center space-x-4">
           {/* Search Input */}
@@ -35,9 +35,9 @@ const ManageProducts = () => {
       </div>
 
       {/* Product Table */}
-      <table className="min-w-full bg-white shadow-md rounded-lg">
+      <table className="dark:bg-transparent dark:text-gray-100 min-w-full bg-white shadow-md rounded-lg dark-bg-gray">
         <thead>
-          <tr className="bg-gray-200 text-left text-sm font-semibold">
+          <tr className="bg-gray-200 dark:bg-gray-400 text-left text-sm font-semibold">
             <th className="py-3 px-4">#</th>
             <th className="py-3 px-4">Product Title</th>
             <th className="py-3 px-4">Status (وضعیت)</th>

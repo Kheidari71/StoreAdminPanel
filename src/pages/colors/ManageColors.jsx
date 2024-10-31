@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa'; // Icons for actions
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
-import TableManageProductGroup from './TableManageProductGroup';
+import TableColors from './TableColors';
 
-const ManageProductsGroup = () => {
+const ManageColors = () => {
   // Table data
  
 
@@ -11,7 +11,7 @@ const ManageProductsGroup = () => {
     <div className="w-full p-8 font-inter">
       {/* Title & Search Bar */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Product Group</h1>
+        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Colors</h1>
 
         <div className="flex items-center space-x-4">
           {/* Search Input */}
@@ -30,10 +30,10 @@ const ManageProductsGroup = () => {
       </div>
 
       {/* Product Table */}
-      <TableManageProductGroup/>
+      <TableColors/>
      
     </div>
   );
 }
 
-export default ManageProductsGroup;
+export default ManageColors;

@@ -11,7 +11,7 @@ const SidebarItem = ({ toggleSidebar, icon, title, path }) => {
     return (
 
         <li className="flex relative items-center mb-2">
-          <NavLink to={path} className={({isActive})=>isActive && "text-blue-500 active_link" }>
+          <NavLink to={path} className={({isActive})=>isActive ? "text-blue-500 active_link" : undefined}>
             {/* Background indicator */}
             <div className="active_element bg-menu_item_on absolute w-1 h-full left-0 top-0 border-emerald-600 rounded-r-md"></div>
             <div onClick={handleClick} className="  cursor-pointer  pl-6 mb-2 flex items-center font-extralight">

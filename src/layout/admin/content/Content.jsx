@@ -4,9 +4,9 @@ import Routse from "../../../pages/Routse";
 
 const Content = () => {
   return (
-    <div className="w-full bg-gray-100 h-full pt-16 dark:bg-gray-500">
-      <Routse />
-    </div>
+    <div className="w-full bg-gray-100 min-h-screen pt-20 dark:bg-gray-500">
+    <Routse />
+  </div>
   );
 };
 

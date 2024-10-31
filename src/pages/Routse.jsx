@@ -13,6 +13,9 @@ import Comments from './comments/Comments';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 import Login from './authorize/Login';
+import LogOut from './authorize/LogOut';
+import ManageColors from './colors/ManageColors';
+
 const Routse = () => {
     // const [path, setPath] = useState("/")
     return (
@@ -23,6 +26,7 @@ const Routse = () => {
             <Routes>
                 <Route path='/' element={<Dashboard />} />
                 <Route path='/manageProduct' element={<ManageProduct />} />
+                <Route path='/manageColors' element={<ManageColors />} />
                 <Route path='/manageProductGroups' element={<ManageProductGroups />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/manageBrands' element={<ManageBrands />} />
@@ -35,6 +39,7 @@ const Routse = () => {
                 <Route path='/questions' element={<Questions />} />
                 <Route path='/comments' element={<Comments />} />
                 <Route path='*' element={<Dashboard />} />
+                <Route path='/logout' element={<LogOut/>}/>
             </Routes>
         </div>
     );

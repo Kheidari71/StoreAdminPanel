@@ -6,65 +6,40 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { json } from "react-router-dom";
+import { useUserInfoStore } from "../zustand/userInfoStore";
 
-//     // const {handleStoreUserInfo} = usePermissions()
 
-
-//     const handleCheckAuth = async ()=>{
-//         const token = localStorage.getItem(GLOBAL_CONST.login_token_name)
-//         setLoading(true)
-//         if (token) {            
-//             const res = await authService(token)            
-//             if(res.status === 200) {
-//                 setIsLoggedIn(true)
-//                 const userInfo = res.data.data as CurrentUserInfoType
-//                 dispatch(getUserInfo(userInfo))
-//                 // handleStoreUserInfo(userInfo)
-//             }
-//             else {
-//                 if (res.status) {
-//                     setIsLoggedIn(false)
-//                     localStorage.removeItem(GLOBAL_CONST.login_token_name)
-//                 }
-//             }                
-//         }else{
-//             setIsLoggedIn(false)
-//         }
-//         setLoading(false)        
-//     }
-
-//     useEffect(()=>{        
-//         handleCheckAuth()
-//     },[])
-
-//     return {loading, isLoggedIn}
-// }
 export const useAuthStatus = () => {
+
+    const { userInfo, setUserInfo } = useUserInfoStore((state) => state);
+
     const [isLoggedIn, setIsLoggedin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const checkLoggedIn = async () => {
-        
-        const token =localStorage.getItem("loginToken")//!!! // این 
-        
-       
 
+        const token = localStorage.getItem("loginToken")
         //token exist or not
         if (token) {
             try {
                 const res = await axios.get("https://ecomadminapi.azhadev.ir/api/auth/user", {
                     headers: {
-                        Authorization: `Bearer ${token}` // 👍 thanks!
+                        Authorization: `Bearer ${token}`
                     },
 
                 });
-             
-                
+            
                 if (res.status === 200) {
-               
+                        
                     //if response 200 = isloggedin true . 
+                  
+                  const userName = res.data.user_name || "Kiana Heidari";
+                  console.log("Setting User Info:", userName);
+                  setUserInfo({...res.data ,  user_name: userName})
                     setIsLoggedin(true)
-
+                    console.log(userInfo)
+                    // setUserInfo(user)
+                
                 } else {
                     //if response is not 200 locall storage should be deleted.
                     //if response is not 200 isloggedin false . 
@@ -83,7 +58,7 @@ export const useAuthStatus = () => {
 
             setIsLoggedin(false);
         }
-    //loading false mishe. 
+        //loading false mishe. 
         setIsLoading(false);
 
     }
@@ -92,6 +67,6 @@ export const useAuthStatus = () => {
         checkLoggedIn()
     }, []);
 
-    return { isLoggedIn, isLoading }
+    return { isLoggedIn, isLoading , userInfo}
 
 }

@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 
 export const useThemeStore = create((set) => ({
-  theme: "light",
-  setTheme: (theme) => set({ theme }),
+  setTheme: (theme) => {
+    localStorage.setItem('theme', theme);
+    set({ theme });
+  },
+  theme: localStorage.getItem('theme') || 'light',
 }));
+
+
+//zustand structure

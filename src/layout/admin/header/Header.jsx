@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBell } from "react-icons/fa"; // Notification bell icon
 import { AiOutlineSearch } from "react-icons/ai"; // Search icon
 import DarkMode from "./DarkMode"
+import UserMenu from "./UserMenu"
 import { useThemeStore } from "../../../zustand/themeStore";
+import Avatar from "../../../assets/Kiana.jpeg";
 
-const Header = ({ isSidebarOpen}) => {
+
+
+const Header = () => {
+
 
   const {theme, setTheme} = useThemeStore((state) => state);
 
@@ -15,19 +20,19 @@ const Header = ({ isSidebarOpen}) => {
 
   return (
     <div
-      className={`fixed w-full top-0 pl-16 left-0 h-16 bg-gray-100 flex font-inter items-center justify-between px-4 transition-all duration-300 ease-in-out dark:bg-gray-600 dark:text-gray-200 `}
+      className={`fixed w-full top-0 pl-16 left-0 h-20 bg-gray-100 flex font-inter items-center justify-between px-4 transition-all duration-300 ease-in-out dark:bg-gray-600 dark:text-gray-200 `}
       style={{ zIndex: 49 }}
     >
      
       <div className="flex items-center space-x-6">
         {/* DaisyUI Toggle Componentn */}
         <div className="cursor-pointer flex items-center">
-          <DarkMode toggleTheme={toggleTheme} theme={theme}/>
+          <DarkMode toggleTheme={toggleTheme} />
         </div>
       </div>
 
       {/* Right Section: Search, Notifications, Avatar */}
-      <div className="flex items-center md:space-x-6 sm:space-x-1">
+      <div className="flex items-center md:space-x-9 space-x-1 ">
         {/* Search Bar */}
         <div className="relative">
           <input
@@ -39,18 +44,23 @@ const Header = ({ isSidebarOpen}) => {
         </div>
 
         {/* Notification Icon */}
-        <div className="relative">
+        <div className="relative ">
           <FaBell className="text-gray-300 hover:text-icon_pink cursor-pointer" size={20} />
           <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-icon_orange rounded-full"></span>
+
         </div>
 
         {/* Avatar */}
-        <div className="relative">
+        <div className="relative flex flex-col justify-center items-center">
           <img
-            src="https://via.placeholder.com/150"
+            src={Avatar}
             alt="User Avatar"
             className="hidden sm:block h-10 w-10 rounded-full object-cover cursor-pointer"
           />
+          <div>
+      
+      <UserMenu/>
+     </div>
         </div>
       </div>
     </div>

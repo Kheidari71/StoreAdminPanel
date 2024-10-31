@@ -7,9 +7,9 @@ import { useThemeStore } from "./zustand/themeStore";
 
 function App() {
 
-  const [theme1, setteme1] = useState("light");
+  
 
-  const {theme, setTheme} = useThemeStore((state) => state);
+  const {theme} = useThemeStore((state) => state);
 
 
 
@@ -17,8 +17,8 @@ function App() {
     <div className={theme}>
 
       <Routes>
-        <Route path="/auth/*" element={<AuthLayout theme={theme1} setteme={(t) => setteme1(t)} />} />
-        <Route path="/*" element={<AdminLayout theme={theme1} setteme={(t) => setteme1(t)} />} />
+        <Route path="/auth/*" element={<AuthLayout  />} />
+        <Route path="/*" element={<AdminLayout  />} />
       </Routes>
 
     </div>

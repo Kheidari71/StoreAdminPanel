@@ -1,6 +1,11 @@
 import React from 'react';
+import { useThemeStore } from '../zustand/themeStore';
 
-const LoadingSpinner = ({ theme }) => {
+
+
+const LoadingSpinner = () => {
+
+  const {theme, setTheme} = useThemeStore((state) => state);
   const spinnerColor = theme === "dark" ? "border-gray-700" : "border-gray-700";
 
   return (

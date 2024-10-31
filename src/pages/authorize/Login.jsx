@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import DarkMode from "../../layout/admin/header/DarkMode";
 import { Link, useNavigate } from "react-router-dom"; 
+import { useThemeStore } from "../../zustand/themeStore";
 
-const Login = ({ theme, setteme }) => {
+const Login = () => {
+
+  const {theme, setTheme} = useThemeStore((state) => state);
+
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
@@ -11,10 +15,8 @@ const Login = ({ theme, setteme }) => {
   const navigate = useNavigate();
 
   // Toggle the theme between 'dark' and 'light'
-  const toggleTheme = () => {
-    setteme((oldTheme) => (oldTheme === "dark" ? "light" : "dark"));
-  };
-
+ 
+  
   const handleLogin = async () => {
     setLoading(true); // Start loading animation
 
@@ -32,10 +34,9 @@ const Login = ({ theme, setteme }) => {
       );
 
       if (response.status === 200 && response.data.token) {
-        console.log(response.data.token); // دیدی چیکار کردم؟
+        console.log(response.data.token); // 
         
-        localStorage.setItem("loginToken", response.data.token); // stringfy حذف کردم ohh are didam!
-        // chera bayad hazf mishod? چون "" اضافه میکنه/ fahmidam!
+        localStorage.setItem("loginToken", response.data.token); 
         console.log(response);
         // alert("Login successful!");
         navigate("/"); // Redirect to the main page
@@ -58,7 +59,7 @@ const Login = ({ theme, setteme }) => {
   };
 
   return (
-    <div className={`${theme === "dark" ? "dark" : ""}`}>
+    <div className={` ${theme === "dark" ? "dark" : ""}`}>
       <div
         className={`h-screen flex justify-center items-center ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-100"
@@ -67,7 +68,7 @@ const Login = ({ theme, setteme }) => {
         <div className="w-full max-w-md p-8 rounded-lg shadow-lg dark:bg-gray-800">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold dark:text-gray-100">Login</h2>
-            <DarkMode theme={theme} setTheme={setteme} toggleTheme={toggleTheme} />
+            <DarkMode />
           </div>
 
           <form

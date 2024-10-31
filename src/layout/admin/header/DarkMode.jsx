@@ -1,6 +1,12 @@
 import React from 'react';
+import { useThemeStore } from '../../../zustand/themeStore';
 
-const DarkMode = ({ theme, toggleTheme }) => {
+const DarkMode = () => {
+  const {theme , setTheme} = useThemeStore((state) => state);
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+   };
+
 
   console.log(theme)
   return (
@@ -16,7 +22,7 @@ const DarkMode = ({ theme, toggleTheme }) => {
 
         {/* Sun icon for dark mode */}
         <svg
-          className={`swap-on fill-current w-8 h-8 ${
+          className={`swap-on fill-current  w-8 h-8 ${
             theme === 'light' ? 'hidden' : 'block'
         
           }`}
