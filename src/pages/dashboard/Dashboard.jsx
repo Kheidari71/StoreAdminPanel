@@ -14,20 +14,20 @@ const tableArray= [
     { id: 447, category: "Forks", title: "Fork", status: "In Stock" },
     { id: 448, category: "Cups", title: "Cup", status: "In Stock" },
     { id: 449, category: "Plates", title: "Plate", status: "Low Stock (2)" },
-    { id: 449, category: "Plates", title: "Plate", status: "Low Stock (2)" },
-    { id: 449, category: "Plates", title: "Plate", status: "Low Stock (2)" }
+    { id: 450, category: "Plates", title: "Plate", status: "Low Stock (2)" },
+    { id: 451, category: "Plates", title: "Plate", status: "Low Stock (2)" }
   ]
   
   
   //card array
   const cardArray = [
-    { className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_orange" ,icon : <FaShoppingCart  className="text-icon_orange hover:text-gray-800 cursor-pointer"
+    {id: 1, className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_orange" ,icon : <FaShoppingCart  className="text-icon_orange hover:text-gray-800 cursor-pointer"
       size={20}/> ,title : "Today's transaction" , price:"412,200"} , 
-    {className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_blue" , icon : <AiOutlineDollar  className="text-icon_blue hover:text-gray-800 cursor-pointer"
+    {id: 2, className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_blue" , icon : <AiOutlineDollar  className="text-icon_blue hover:text-gray-800 cursor-pointer"
       size={20}/> ,title : "Today's income" , price:"412,750"} , 
-    {className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_pink" ,icon : <IoMdStats  className="text-icon_pink hover:text-gray-800 cursor-pointer"
+    {id: 3, className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_pink" ,icon : <IoMdStats  className="text-icon_pink hover:text-gray-800 cursor-pointer"
       size={20}/> ,title : "Last week transaction" , price:"412,00"} , 
-    {className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_green" ,icon : <RiMoneyDollarCircleLine  className="text-icon_green hover:text-gray-800 cursor-pointer"
+    {id: 4, className : "flex justify-center items-center w-16 h-16 rounded-full bg-bg_icon_green" ,icon : <RiMoneyDollarCircleLine  className="text-icon_green hover:text-gray-800 cursor-pointer"
       size={20}/> ,title : "Last week income" , price:"548,750"} , 
   ]
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
     return(
         <div>
           <div className="flex flex-wrap justify-center items-center mx-auto mt-11">
-         {cardArray.map(item=>(<Card {...item}/>))}
+         {cardArray.map(item=>(<Card key={item.id} {...item}/>))}
            <div/>
     
           </div>

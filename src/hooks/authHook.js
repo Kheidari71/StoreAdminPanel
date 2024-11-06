@@ -7,6 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { json } from "react-router-dom";
 import { useUserInfoStore } from "../zustand/userInfoStore";
+import { logInService } from "../services/auth";
 
 
 export const useAuthStatus = () => {
@@ -22,28 +23,23 @@ export const useAuthStatus = () => {
         //token exist or not
         if (token) {
             try {
-                const res = await axios.get("https://ecomadminapi.azhadev.ir/api/auth/user", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-
-                });
+                const res = await logInService();
             
                 if (res.status === 200) {
                         
                     //if response 200 = isloggedin true . 
                   
                   const userName = res.data.user_name || "Kiana Heidari";
-                  console.log("Setting User Info:", userName);
+                 
                   setUserInfo({...res.data ,  user_name: userName})
                     setIsLoggedin(true)
-                    console.log(userInfo)
+                    
                     // setUserInfo(user)
                 
                 } else {
                     //if response is not 200 locall storage should be deleted.
                     //if response is not 200 isloggedin false . 
-                    console.log("Invalid response status:", res.status);
+                    
                     // localStorage.removeItem("loginToken");
                     setIsLoggedin(false)
                 }

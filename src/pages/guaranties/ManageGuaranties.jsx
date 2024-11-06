@@ -1,14 +1,15 @@
 import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+import TableGuaranties from './TableGuaranties';
 import { FaSearch } from 'react-icons/fa';
-import RolesTable from './RolesTable';
-const Roles = () => {
+
+const ManageGuaranties = () => {
   
         return (
             <div className="w-full p-8 font-inter">
               {/* Title & Search Bar */}
               <div className="flex justify-between items-center mb-8">
-                <h1 className="text-2xl dark:text-gray-100 font-semibold">Roles</h1>
+                <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Guaranties</h1>
         
                 <div className="flex items-center space-x-4">
                   {/* Search Input */}
@@ -27,10 +28,10 @@ const Roles = () => {
               </div>
         
               {/* Product Table */}
-              <RolesTable/>
+              <TableGuaranties/>
              
             </div>
     );
 }
 
-export default Roles;
+export default ManageGuaranties;

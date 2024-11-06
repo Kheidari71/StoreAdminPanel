@@ -8,6 +8,8 @@ import {
   FaBoxes,
   FaCogs,
   FaTags,
+  FaShieldAlt,
+
   FaPalette,
   FaPercentage,
   BiPalette,
@@ -17,7 +19,8 @@ import {
   FaUserShield,
   FaUnlockAlt,
 } from "react-icons/fa"; // Import icons from react-icons
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // For hamburger menu
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // For hamburger
+import { MdLocalOffer } from 'react-icons/md';
 
 
 
@@ -35,18 +38,20 @@ const sidebarArray = [
       { title: "Manage Product", icon: <FaStore className="mr-6"/> ,path: '/manageProduct'},
       
       { title: "Manage Brands", icon: <FaCogs className="mr-6" />,path: '/managebrands' },
-      { title: "Manage Colors", icon: <FaPalette className="mr-6" />,path: '/manageColors' }
+      { title: "Manage Colors", icon: <FaPalette className="mr-6" />,path: '/manageColors' },
+      { title: "Manage Guaranties", icon: <FaShieldAlt className="mr-6" />,path: '/manageGuaranties' }
     ]
   },
   {
     title:"Orders and Cards" ,items: [
       { title: "Manage Cards", icon: <FaTags className="mr-6" /> ,path: '/manageCards'},
       { title: "Manage Orders", icon: <FaPalette className="mr-6" /> ,path: '/manageOrders'},
-      { title: "Shipping Method", icon: <FaPercentage className="mr-6" /> ,path: '/shippingMethod'}
+      { title: "Shipping Method", icon: <FaPercentage className="mr-6" /> ,path: '/shippingMethod'},
+      { title: "Discounts", icon: <MdLocalOffer className="mr-6" /> ,path: '/discounts'}
     ]
   },
   {
-    title: "Users and Cards", items: [
+    title: "Users", items: [
 {title :"View Users" , icon: <FaUsers className="mr-6" /> ,path: '/viewUsers'},
 {title :"Roles" , icon: <FaUserShield className="mr-6" /> ,path: '/roles'},
 {title :"Permissions" , icon: <FaUnlockAlt className="mr-6" /> ,path: '/permissions'}
@@ -83,19 +88,19 @@ const Sidebar = () => {
           } w-72 lg:w-72 transition-transform duration-300 ease-in-out z-50`}
         style={{ overflowY: "auto" }} // Prevents vertical overflow
       >
-        <div className=" flex items-center justify-end px-6 pt-6 ">
+        <div className=" flex items-center justify-end px-6 pt-4 ">
           <button onClick={toggleSidebar}>
             <AiOutlineClose className="text-blue-500 dark:text-gray-300" size={24} />
           </button>
         </div>
 
-        <div className="py-8 text-md font-inter">
+        <div className="py-2 text-md font-inter">
           <ul>
         
             {sidebarArray.map((topItem, i) => (
-              <li key={i+"_sideItems"} className="text-menu_subItem mb-2 dark:text-gray-100 font-medium">
-                <div className= "ml-7 mb-4">{topItem.title}</div>
-                <ul className="pl-0 mb-6">
+              <li key={i+"_sideItems"} className="text-menu_subItem mb-1 dark:text-gray-100 font-medium">
+                <div className= "ml-7 mb-2">{topItem.title}</div>
+                <ul className="pl-0 mb-4">
                   {topItem.items.map((item, j) => (
                     <SidebarItem key={i+"_"+j+"_subItems"} toggleSidebar={toggleSidebar} {...item} />
                   ))}

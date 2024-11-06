@@ -15,6 +15,8 @@ import Dashboard from './dashboard/Dashboard';
 import Login from './authorize/Login';
 import LogOut from './authorize/LogOut';
 import ManageColors from './colors/ManageColors';
+import ManageGuaranties from './guaranties/ManageGuaranties';
+import Discounts from './discounts/Discounts';
 
 const Routse = () => {
     // const [path, setPath] = useState("/")
@@ -32,12 +34,14 @@ const Routse = () => {
                 <Route path='/manageBrands' element={<ManageBrands />} />
                 <Route path='/manageCards' element={<ManageCards />} />
                 <Route path='/manageOrders' element={<ManageOrders />} />
+                <Route path='/manageGuaranties' element={<ManageGuaranties />} />
                 <Route path='/shippingMethod' element={<ShippingMethod />} />
                 <Route path='/viewUsers' element={<ViewUsers />} />
                 <Route path='/roles' element={<Roles />} />
                 <Route path='/permissions' element={<Permissions />} />
                 <Route path='/questions' element={<Questions />} />
                 <Route path='/comments' element={<Comments />} />
+                <Route path='/discounts' element={<Discounts />} />
                 <Route path='*' element={<Dashboard />} />
                 <Route path='/logout' element={<LogOut/>}/>
             </Routes>

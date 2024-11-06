@@ -1,18 +1,17 @@
 import React from 'react';
 import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa'; // Icons for actions
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
+import TableDiscount from './TableDiscount'
 
-import TableShippingMethod from './TableShippingMethod';
-
-const ManageShippingMethod = () => {
+const Discount = () => {
   // Table data
  
 
   return (
-    <div className="w-full p-8 font-inter ">
+    <div className="w-full p-8 font-inter">
       {/* Title & Search Bar */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Shipping Method</h1>
+        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Discounts</h1>
 
         <div className="flex items-center space-x-4">
           {/* Search Input */}
@@ -30,11 +29,11 @@ const ManageShippingMethod = () => {
         </div>
       </div>
 
-      {/* Product Table */}
-      <TableShippingMethod/>
+      {/* discount Table */}
+      <TableDiscount/>
      
     </div>
   );
 }
 
-export default ManageShippingMethod;
+    export default Discount;

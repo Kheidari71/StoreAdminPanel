@@ -10,10 +10,6 @@ const UserMenu = () => {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-    // Perform logout logic (e.g., clear localStorage, redirect, etc.)
-  };
 
   return (
     <div className="relative inline-block text-left">
@@ -34,7 +30,7 @@ const UserMenu = () => {
         >
          
           <button
-            onClick={handleLogout}
+
             className="items-center text-sm w-full px-2 py-2 text-left dark:text-white dark:hover:text-orange-300 hover:text-orange-300"
           >
             <NavLink to={"./logOut"}>

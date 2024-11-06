@@ -3,8 +3,6 @@ import { useUserInfoStore } from '../../zustand/userInfoStore';
 
 const Comments = () => {
 
-//     const { userInfo , setUserInfouser} = useUserInfoStore(state=>state)
-// console.log(userInfo);
 
 
 

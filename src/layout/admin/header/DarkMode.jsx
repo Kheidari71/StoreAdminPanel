@@ -7,8 +7,6 @@ const DarkMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
    };
 
-
-  console.log(theme)
   return (
     <div>
       <label className="swap swap-rotate cursor-pointer">

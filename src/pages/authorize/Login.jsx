@@ -3,6 +3,7 @@ import axios from "axios";
 import DarkMode from "../../layout/admin/header/DarkMode";
 import { Link, useNavigate } from "react-router-dom"; 
 import { useThemeStore } from "../../zustand/themeStore";
+import { logInUserService } from "../../services/auth";
 
 const Login = () => {
 
@@ -22,22 +23,13 @@ const Login = () => {
 
     try {
       const loginData = { phone, password, remember: remember ? 1 : 0 };
-      const response = await axios.post(
-        "https://ecomadminapi.azhadev.ir/api/auth/login",
-        loginData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await logInUserService(loginData);
 
       if (response.status === 200 && response.data.token) {
-        console.log(response.data.token); // 
+
         
         localStorage.setItem("loginToken", response.data.token); 
-        console.log(response);
+  
         // alert("Login successful!");
         navigate("/"); // Redirect to the main page
       } else {

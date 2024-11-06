@@ -1,9 +1,9 @@
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { Alert } from '../../components/Alert';
-import { GiToken } from 'react-icons/gi';
+
+import { getColorsService } from '../../services/auth';
 
 const TableManageColors = () => {
     const [data, setData] = useState([]);
@@ -14,18 +14,13 @@ const TableManageColors = () => {
         try {
 
             const token = localStorage.getItem("loginToken")
-            const res = await axios.get("https://ecomadminapi.azhadev.ir/api/admin/colors", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-
-            })
+            const res = await getColorsService();
             if (res.status === 200) {
-                console.log(res.data.data)
+              
                 setData(res.data.data)
             }
         } catch (error) {
-            console.log(error)
+        
             setLoading(false);
         } finally {
             setLoading(false); // Stop loading
@@ -49,14 +44,15 @@ const TableManageColors = () => {
         },
         {
             key: "color", lable: "Color"
-        }
+        },
+        {key :"actions" , lable:"Actions"}
     ]
 
     return (
-        <div>
+        <div className=' flex m-auto w-5/6'>
             {loading ? (<LoadingSpinner />)
                 : data.length ? (
-                    <table className="border-solid dark:bg-transparent dark:text-gray-100 w-full bg-white shadow-md rounded-lg">
+                    <table className=" text-center border-solid dark:bg-transparent dark:text-gray-100 w-full bg-white shadow-md rounded-lg">
                         <thead className='text-center'>
                             <tr className="bg-gray-200 dark:bg-gray-400 text-left text-sm font-inter ">
                                 {tableHead.map((col) => (
@@ -74,6 +70,14 @@ const TableManageColors = () => {
       className="w-11 h-3 rounded text-center p-4'" 
       style={{ backgroundColor: color.code }}
     ></div></td>
+      <td className="p-3 py-3 sm:px-4 text-center">
+                  <div className="flex justify-center space-x-4">
+                    <FaShareAlt className="text-green-500 cursor-pointer" />
+                    <FaEdit className="text-yellow-500 cursor-pointer" />
+                    <FaPlus className="text-pink-500 cursor-pointer" />
+                    <FaTrashAlt className="text-red-500 cursor-pointer" />
+                  </div>
+                </td>
 </tr>
                             ))}
                         </tbody>
