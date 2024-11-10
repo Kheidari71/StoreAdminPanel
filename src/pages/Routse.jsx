@@ -29,7 +29,9 @@ const Routse = () => {
                 <Route path='/' element={<Dashboard />} />
                 <Route path='/manageProduct' element={<ManageProduct />} />
                 <Route path='/manageColors' element={<ManageColors />} />
-                <Route path='/manageProductGroups' element={<ManageProductGroups />} />
+                <Route path="/manageProductGroups" element={<ManageProductGroups />}>
+                    <Route path=":manageProductGroupId" />
+                </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/manageBrands' element={<ManageBrands />} />
                 <Route path='/manageCards' element={<ManageCards />} />
@@ -43,7 +45,7 @@ const Routse = () => {
                 <Route path='/comments' element={<Comments />} />
                 <Route path='/discounts' element={<Discounts />} />
                 <Route path='*' element={<Dashboard />} />
-                <Route path='/logout' element={<LogOut/>}/>
+                <Route path='/logout' element={<LogOut />} />
             </Routes>
         </div>
     );

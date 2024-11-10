@@ -4,6 +4,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import { getBrandService } from '../../services/auth';
+import Actions from './Actions';
 
 const TableBrands = () => {
     const [loading, setLoading] = useState(false);
@@ -60,12 +61,7 @@ original_name} </td>
     <td className='p-3'> {brand.created_at}</td>
     <td className='p-3'> {brand.descriptions || "No description available"}</td>
     <td className="p-3 py-3 sm:px-4 text-center">
-    <div className="flex justify-center space-x-4">
-                    <FaShareAlt className="text-green-500 cursor-pointer" />
-                    <FaEdit className="text-yellow-500 cursor-pointer" />
-                    <FaPlus className="text-pink-500 cursor-pointer" />
-                    <FaTrashAlt className="text-red-500 cursor-pointer" />
-                  </div>
+   <Actions/>
                 </td>
 </tr>
 ))}

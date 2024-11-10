@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDiscountService } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
+import Actions from './Actions';
 
 const TableDiscount = () => {
 const[loading , setLoading]= useState(false);
@@ -61,12 +62,7 @@ const handleGetDicounts =async ()=>{
                             <td className='p-3'>{discount.expire_at}</td>
                             <td className='p-3'>{discount.is_active === 1 ? "Active" : "Not Active"}</td>
                             <td className="p-3 py-3 sm:px-4 text-center">
-                                <div className="flex justify-center space-x-4">
-                                    <FaShareAlt className="text-green-500 cursor-pointer" />
-                                    <FaEdit className="text-yellow-500 cursor-pointer" />
-                                    <FaPlus className="text-pink-500 cursor-pointer" />
-                                    <FaTrashAlt className="text-red-500 cursor-pointer" />
-                                </div>
+                               <Actions/>
                             </td>
                         </tr>
                     ))}

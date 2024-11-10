@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { getGuarantiesServis } from '../../services/auth';
+import Actions from './Actions';
 
 const TableGuaranties = () => {
     const [loading, setLoading] = useState(false);
@@ -30,7 +31,8 @@ const TableGuaranties = () => {
         { key: "id", label: "#" },
         { key: "title", label: "Title" },
         { key: "time", label: "Created At" },
-        { key: "descriptions", label: "Descriptions" }
+        { key: "descriptions", label: "Descriptions" },
+        { key: "actions", label: "Actions" }
     ];
 
     return (
@@ -54,6 +56,9 @@ const TableGuaranties = () => {
                                     <td className='p-3'>{guarante.title}</td>
                                     <td className='p-3'>{guarante.created_at}</td>
                                     <td className='p-3'>{guarante.descriptions || "No description available"}</td>
+                                    <td className="p-3 py-3 sm:px-4 text-center">
+                 <Actions/>
+                </td>
                                 </tr>
                             ))}
                         </tbody>
