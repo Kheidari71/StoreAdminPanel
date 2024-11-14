@@ -3,6 +3,7 @@ import { getRolesService } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import { MdAccessibility } from 'react-icons/md';
+import Actions from './Actions';
 
 const RolesTable = () => {
     const [loading , setLoading]= useState(false);
@@ -58,11 +59,7 @@ const tableHeadInfo= [
                             <td className="p-3">{roles.title}</td>
                             <td className="p-3">{roles.description || "No description available"}</td>
                             <td className="p-4 text-center">
-                                <div className="flex justify-center space-x-4">
-                                    <MdAccessibility className="text-green-500 cursor-pointer hover:text-green-600" />
-                                    <FaEdit className="text-yellow-500 cursor-pointer hover:text-yellow-600" />
-                                    <FaTrashAlt className="text-red-500 cursor-pointer hover:text-red-600" />
-                                </div>
+                               <Actions/>
                             </td>
                         </tr>
                     ))}

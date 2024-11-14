@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa'; // Icons for actions
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
 
 const ManageProducts = () => {
+  useEffect(() => {
+    // Simulate an error in this component after the first render
+    throw new Error("Something went wrong in ManageProducts!");
+  }, []); // Empty dependency array ensures it runs only once
+
   // Table data
   const tableData = [
     { id: 1, title: "Frying Pan", status: "Low Stock (3)" },
@@ -64,6 +69,6 @@ const ManageProducts = () => {
       </table>
     </div>
   );
-}
+};
 
 export default ManageProducts;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getShippingMethodService } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import Actions from '../guaranties/Actions';
 
 const TableShippingMethod = () => {
     const [data, setData] = useState([]);
@@ -56,10 +57,7 @@ const TableShippingMethod = () => {
                             <td className="p-3">{shipping.title}</td>
                             <td className="p-3">{shipping.amount}</td>
                             <td className="p-3 text-center">
-                                <div className="flex justify-center space-x-4">
-                                    <FaEdit className="text-yellow-500 cursor-pointer hover:text-yellow-600" />
-                                    <FaTrashAlt className="text-red-500 cursor-pointer hover:text-red-600" />
-                                </div>
+                               <Actions/>
                             </td>
                         </tr>
                     ))}

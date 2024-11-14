@@ -1,32 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { getCategoryService } from '../../services/auth';
+import { getCategoryChildService, getCategoryService } from '../../services/auth';
 import Actions from './Actions';
-
+import { useLocation, useParams } from 'react-router-dom';
+import  handleError  from '../../App';
+import { toast } from 'react-toastify';
 const TableManageProduct = () => {
+  const params = useParams();
+  const location = useLocation()
+
+  console.log(location)
+
+  const parentId = params.parentId;
+
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleGetCategories = async () => {
+
     setLoading(true); // Start loading
     try {
-
-      const res = await getCategoryService()
-
+      
+      const res = parentId
+        ? await getCategoryChildService(parentId)
+        : await getCategoryService()
       if (res.status === 200) {
         setData(res.data.data); // Set the fetched data to state
-console.log(res.data.data)
+        console.log(res.data.data)
+      
       }
+
     } catch (error) {
+      //httpservice error
       console.error("Error fetching data:", error);
+      // error toast
+      handleError("Error fetching data. Please try again.")
     } finally {
       setLoading(false); // Stop loading
-    }
+  }
   };
 
   useEffect(() => {
     handleGetCategories();
-  }, []);
+    console.log(parentId)
+  }, [parentId]);
 
   const tabaleHeadInfo = [
     { key: 'id', label: '#' },
@@ -56,11 +74,11 @@ console.log(res.data.data)
               <tr key={product.id} className="border-b font-inter">
                 <td className='p-3'>{index + 1}</td>
                 <td className='p-3'>{product.title}</td>
-                <td className='p-3'>{product.parent_id || "No parent"}</td>
+                <td className='p-3'>{parentId? location.state.data.title : "No parent"}</td>
                 <td className='p-3'>{product.descriptions || "No descriptions available"}</td>
-                <td className='p-3'>{product.is_active == 1? "Yes": "No"}</td>
+                <td className='p-3'>{product.is_active == 1 ? "Yes" : "No"}</td>
                 <td className="p-3 py-3 sm:px-4 text-center">
-                   <Actions/>  
+                  <Actions data={product} parentId={parentId}/>
                 </td>
               </tr>
             ))}

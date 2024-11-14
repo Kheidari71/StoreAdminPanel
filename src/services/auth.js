@@ -15,6 +15,10 @@ export const logInUserService = (loginData)=>{
 export const getCategoryService = ()=>{
     return httpService("/admin/categories")
 }
+export const getCategoryChildService = (parentId)=>{
+    return httpService(`/admin/categories?parent=${parentId}`)
+}
+
 // "https://ecomadminapi.azhadev.ir/api/admin/brands"
 export const getBrandService = ()=>{
     return httpService("/admin/brands")

@@ -9,7 +9,6 @@ const SidebarItem = ({ toggleSidebar, icon, title, path }) => {
       
     };
     return (
-
         <li className="flex relative items-center mb-2">
           <NavLink to={path} className={({isActive})=>isActive ? "text-blue-500 active_link" : undefined}>
             {/* Background indicator */}

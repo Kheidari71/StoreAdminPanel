@@ -12,3 +12,12 @@ body{
 .active_link .active_element{
     display: block !important;
 }
+
+/* Override styles for toast container */
+.blue-toast .Toastify__toast--success,
+.blue-toast .Toastify__toast--error,
+.blue-toast .Toastify__toast--warning,
+.blue-toast .Toastify__toast--info {
+  background-color: #007bff !important; /* Bootstrap blue or any shade you prefer */
+  color: white !important; /* Text color */
+}
