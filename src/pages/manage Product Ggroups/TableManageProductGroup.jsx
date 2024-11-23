@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { getCategoryChildService, getCategoryService } from '../../services/auth';
+import { getCategoryChildService, getCategoryService } from '../../services/category';
 import Actions from './Actions';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import  handleError  from '../../App';
-import { toast } from 'react-toastify';
-const TableManageProduct = () => {
-  const params = useParams();
+import { useDataStore } from '../../zustand/dataStateStore';
+
+const TableManageProduct = ({ parentId}) => {
+  const { data , setData} = useDataStore((state) => state); 
+
   const location = useLocation()
 
   console.log(location)
 
-  const parentId = params.parentId;
+ 
 
 
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleGetCategories = async () => {

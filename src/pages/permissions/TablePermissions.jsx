@@ -1,5 +1,5 @@
 import React, { useDebugValue, useEffect, useState } from 'react';
-import { getPermissionsService } from '../../services/auth';
+import { getPermissionsService } from '../../services/permission';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const TablePermissions = () => {

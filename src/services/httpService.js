@@ -10,6 +10,10 @@ const httpService = (url, method, data = null) => {
         "Content-Type": "application/json",
     };
 
+    if (data instanceof FormData) {
+        delete headers["Content-Type"];
+    }
+
     if (token) {
         headers.Authorization = `Bearer ${token}`;
     }

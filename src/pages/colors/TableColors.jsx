@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
-import { getColorsService } from '../../services/auth';
+import { getColorsService } from '../../services/colors';
 import Actions from './Actions';
 
 const TableManageColors = () => {
@@ -13,15 +13,13 @@ const TableManageColors = () => {
     const handleGetColors = async () => {
         setLoading(true)
         try {
-
-            const token = localStorage.getItem("loginToken")
             const res = await getColorsService();
             if (res.status === 200) {
-              
+
                 setData(res.data.data)
             }
         } catch (error) {
-        
+
             setLoading(false);
         } finally {
             setLoading(false); // Stop loading
@@ -46,7 +44,7 @@ const TableManageColors = () => {
         {
             key: "color", lable: "Color"
         },
-        {key :"actions" , lable:"Actions"}
+        { key: "actions", lable: "Actions" }
     ]
 
     return (
@@ -62,20 +60,20 @@ const TableManageColors = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((color , index)=>(
-<tr className="border-b font-inter" key={color.id}>
-    <td className='text-center p-4'>{index + 1}</td>
-    <td className='text-center p-4'>{color.title}</td>
-    <td className='text-center p-4'>{color.code}</td>
-    <td className='text-center p-4 flex justify-center'><div 
-      className="w-11 h-4 rounded text-center p-4'" 
-      style={{ backgroundColor: color.code }}
-    ></div></td>
-      <td className="p-3 py-3 sm:px-4 text-center">
-                 <Actions/>
-                </td>
-</tr>
-                           ))}
+                            {data.map((color, index) => (
+                                <tr className="border-b font-inter" key={color.id}>
+                                    <td className='text-center p-4'>{index + 1}</td>
+                                    <td className='text-center p-4'>{color.title}</td>
+                                    <td className='text-center p-4'>{color.code}</td>
+                                    <td className='text-center p-4 flex justify-center'><div
+                                        className="w-11 h-4 rounded text-center p-4'"
+                                        style={{ backgroundColor: color.code }}
+                                    ></div></td>
+                                    <td className="p-3 py-3 sm:px-4 text-center">
+                                        <Actions />
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 ) : (

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getShippingMethodService } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Actions from '../guaranties/Actions';
+import apiClient from '../../services/apiService';
 
 const TableShippingMethod = () => {
     const [data, setData] = useState([]);
@@ -10,7 +9,7 @@ const TableShippingMethod = () => {
 
     const handleGetShippingMethod = async () => {
         setLoading(true)
-        const res = await getShippingMethodService()
+        const res = await apiClient.get("/admin/deliveries")
         if (res.status == 200) {
             setData(res.data.data);
             console.log(res.data.data)

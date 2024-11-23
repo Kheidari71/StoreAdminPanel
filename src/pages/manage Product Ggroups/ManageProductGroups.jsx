@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa'; // Icons for actions
+import {useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
 import TableManageProductGroup from './TableManageProductGroup';
+import Modalcontainer from './ModallContainer';
+import { Outlet, useParams } from 'react-router-dom';
+import { useDataStore } from '../../zustand/dataStateStore';
+
 
 const ManageProductsGroup = () => {
+  const [forceRender, setForceRender] = useState(0);
+
+  const params = useParams(); 
+  const parentId = params.parentId;
+
+  
   // Table data
- 
+ const [isModalOpen , setIsModalOpen]= useState(false);
+const handleModalOpen = ()=>{
+  setIsModalOpen(true)
+}
+
+const handleModalClose = ()=>{
+  setIsModalOpen(false)
+}
 
   return (
     <div className="w-full p-8 font-inter">
       {/* Title & Search Bar */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Product Group</h1>
-
+        {/* <h1 className="text-2xl dark:text-gray-100 font-semibold">{data[0].title}</h1> */}
+        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Produt Group</h1>
         <div className="flex items-center space-x-4">
           {/* Search Input */}
           <div className="relative">
@@ -24,13 +42,17 @@ const ManageProductsGroup = () => {
             <FaSearch className="absolute dark:text-gray-200 sm:left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
 
+
           {/* Plus Icon for Adding New Product */}
-          <AiOutlinePlus className="text-icon_pink w-8 h-8 cursor-pointer" />
+          <AiOutlinePlus  onClick={handleModalOpen} className="text-icon_pink w-8 h-8 cursor-pointer" />
+          <Modalcontainer setForceRender={setForceRender}  forceRender={forceRender} parentId={parentId} handleModalClose={handleModalClose} isModalOpen={isModalOpen} handleModalOpen={handleModalOpen} />
         </div>
       </div>
 
       {/* Product Table */}
-      <TableManageProductGroup/>
+      <TableManageProductGroup params= {params} parentId={parentId}/>
+
+      <Outlet/>
      
     </div>
   );

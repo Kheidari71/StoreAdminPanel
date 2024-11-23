@@ -30,7 +30,8 @@ const Routse = () => {
                 <Route path='/manageProduct' element={<ManageProduct />} />
                 <Route path='/manageColors' element={<ManageColors />} />
                 <Route path="/manageProductGroups" element={<ManageProductGroups />}>
-                    <Route path=":parentId" />
+                    <Route path=":parentId"/>
+                    <Route path="addCategory" />
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/manageBrands' element={<ManageBrands />} />

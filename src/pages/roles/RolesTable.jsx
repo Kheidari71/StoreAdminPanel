@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getRolesService } from '../../services/auth';
+import { getRolesService } from '../../services/roles';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import { MdAccessibility } from 'react-icons/md';

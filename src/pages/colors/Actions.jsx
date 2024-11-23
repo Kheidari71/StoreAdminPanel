@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 
 const Actions = () => {
     return (

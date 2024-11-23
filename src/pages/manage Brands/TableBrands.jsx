@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
-import { getBrandService } from '../../services/auth';
+import { getBrandService } from '../../services/brands';
 import Actions from './Actions';
 
 const TableBrands = () => {

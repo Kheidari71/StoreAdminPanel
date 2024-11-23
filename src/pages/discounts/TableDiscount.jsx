@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDiscountService } from '../../services/auth';
+import { getDiscountService } from '../../services/discounts';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import Actions from './Actions';

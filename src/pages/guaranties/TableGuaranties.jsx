@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { getGuarantiesServis } from '../../services/auth';
+import { getGuarantiesServis } from '../../services/guaranties';
 import Actions from './Actions';
 
 const TableGuaranties = () => {
