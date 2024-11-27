@@ -3,9 +3,15 @@ import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { addCategoryService } from "../../services/category";
 import { Alert } from "../../components/Alert";
+import TextInput from "../../form/TextInput";
+import TextArea from "../../form/TextArea";
+import FileInput from "../../form/FileInput";
+import SelectInput from "../../form/SelectInput";
+import Checkbox from "../../form/Checkbox";
+import Button from "../../form/Button";
 
 const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
- 
+
 
   const {
     register,
@@ -15,12 +21,12 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
     defaultValues: {
       title: "",
       description: "",
-      is_active: true,
+      is_active: "active",
       show_in_menu: true,
       image: null
-  }
+    }
   })
- 
+
   const onSubmit = (data) => {
     console.log('Form submitted with data:', data);
     handleAddCategory(data);
@@ -38,7 +44,7 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
 
       const formattedData = {
         ...data,
-        is_active: data.is_active ? 1 : 0,
+        is_active: data.is_active === "Active" ? 1 : 0,
         show_in_menu: data.show_in_menu ? 1 : 0,
       };
       if (parentId) formattedData.parent_id = parentId;
@@ -46,14 +52,14 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
       console.log('Formatted data:', formattedData);
 
       const res = await addCategoryService(formattedData);
-      
+
       console.log('API Response:', res);
 
-      if (res.status === 200 || res.status === 201) {
+      if (res.status === 200 || res.status === 202) {
         console.log('Category data:', res.data.data);
         console.log(res.status);
         Alert("Record has successfully added", "success");
-        
+
         handleModalClose();
         // Refresh data here
       } else {
@@ -83,12 +89,14 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
           <h2 className="text-lg font-semibold text-card&table dark:text-gray-200">
             Add Product Category
           </h2>
-          <button
+          <Button
+            type="button"
             onClick={handleModalClose}
             className="text-gray-500 hover:text-gray-800 text-xl"
           >
             X
-          </button>
+          </Button>
+
         </div>
         <div className="modal-body ">
           {/* Parent Category Field */}
@@ -106,103 +114,68 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
           </div>
 
           {/* Category Title Field */}
-          <div className="mb-4">
-            <label className="dark:bg-transparent dark:text-gray-300 block text-sm text-card&table  mb-2">
-              Category Title
-            </label>
-            {/* <input
-              type="text"
-              className="dark:bg-transparent dark:text-gray-300 w-full p-2 border border-gray-300 rounded-lg"
-              placeholder="Enter category title"
-            /> */}
-             <input
-            type="text"
-            {...register("title", { required: "Category title is required" })}
-            className="dark:bg-transparent dark:text-gray-300 w-full p-2 border border-gray-300 rounded-lg"
+          <TextInput
+            label="Category title"
+            register={register}
+            name="title"
             placeholder="Enter category title"
+            validation={{ required: "Category title is required" }}
+            errors={errors}
           />
-           {errors.title && (
-            <span className="text-red-500 text-sm">{errors.title.message}</span>
-          )}
-          </div>
 
-          {/* Description Field */}
-          <div className="mb-4 dark:bg-transparent dark:text-gray-300">
-            <label className="block text-sm text-card&table dark:text-gray-200 mb-2">
-              Description
-            </label>
-            <textarea
-            {...register ("description")}
-              className="dark:bg-transparent dark:text-gray-300 w-full p-2 border border-gray-300 rounded-lg"
-              placeholder="Enter description"
-            ></textarea>
-          </div>
 
-          {/* File Upload Field */}
-          <div className="mb-4 ">
-            <label className="block text-sm text-card&table  mb-2">Image</label>
-            <input
-             type="file"
-            {...register("image")}
-              className="text-gray-300 dark:bg-transparent dark:text-gray-300 w-full p-2 border border-gray-300 rounded-lg"
-            />
-            <span className="text-gray-500 dark:bg-transparent dark:text-gray-300">
-              No file chosen
-            </span>
-          </div>
+          <TextArea
+            label="Description"
+            register={register}
+            name="description"
+            placeholder="Enter description"
+          />
+          <FileInput
+            label={Image}
+            register={register}
+            name="image"
+            className="dark:bg-transparent dark:text-gray-300"
+            placeholder="No file chosen"
+          />
 
-          {/* Status Field */}
-          <div className="mb-4">
-            <label className="dark:bg-transparent dark:text-gray-300 block text-sm text-card&table mb-2">
-              Status
-            </label>
-            <select
-{...register("is_active")}
-             className="text-gray-300 dark:bg-transparent dark:text-gray-300 w-full p-2 border border-gray-300 rounded-lg">
-              <option
-                value="active"
-              >
-                Active
-              </option>
-              <option
-                value="inactive"
-              >
-                Not Active
-              </option>
-              
-              {/* Add other status options here */}
-            </select>
-          </div>
+          <SelectInput
+            label="Status"
+            name="is_active"
+            register={register}
+            options={
+              [
+                { value: "active", label: "Active" },
+                { value: "inactive", label: "Not Active" }
+              ]
+            }
+          />
 
           {/* Show in Menu Field */}
-          <div className="mb-4 flex items-center">
-          <input
-            type="checkbox"
-            {...register("show_in_menu")}
-            className="mr-2"
+
+          <Checkbox
+            register={register}
+            name="show_in_menu"
+            label="Show in menu"
           />
-            <label className="text-sm text-card&table dark:text-gray-200">
-              Show in menu
-            </label>
-          </div>
 
           {/* Action Buttons */}
           <div className="flex justify-between">
-            <button
+
+            <Button
               type="button"
-onClick={handleModalClose}
               className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg"
+              onClick={handleModalClose}
             >
               Cancel
-            </button>
-            <button
-        
+            </Button>
+            <Button
               type="submit"
               className="bg-icon_orange text-white px-6 py-2 rounded-lg"
               onClick={handleSubmit(onSubmit)}
             >
               Save
-            </button>
+            </Button>
+
           </div>
         </div>
       </form>

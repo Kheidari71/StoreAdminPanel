@@ -77,7 +77,7 @@ const TableManageProduct = ({ parentId}) => {
                 <td className='p-3'>{product.title}</td>
                 <td className='p-3'>{parentId? location.state.data.title : "No parent"}</td>
                 <td className='p-3'>{product.descriptions || "No descriptions available"}</td>
-                <td className='p-3'>{product.is_active == 1 ? "Yes" : "No"}</td>
+                <td className='p-3'>{product.show_in_menu == 1 ? "Yes" : "No"}</td>
                 <td className="p-3 py-3 sm:px-4 text-center">
                   <Actions data={product} parentId={parentId}/>
                 </td>

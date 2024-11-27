@@ -16,7 +16,7 @@ export const addCategoryService = (data) => {
         formdata.append('title', data.title);
         formdata.append('description', data.description);
         formdata.append('image', data.image);
-        formdata.append('is_active', data.is_active ? 1 : 0);
+        formdata.append('is_active', data.is_active=== "Active"? 1 : 0);
         formdata.append('show_in_menu', data.show_in_menu ? 1 : 0);
         return httpService("/admin/categories", 'post', formdata);
     }
