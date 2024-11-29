@@ -2,7 +2,7 @@ import React from "react";
 
 const FileInput = ({ label, register, name, className, placeholder }) => (
   <div className="mb-4">
-    <label className="block text-sm text-card&table mb-2">{label}</label>
+    <label className="dark:bg-transparent dark:text-gray-300 block text-sm text-card&table mb-2">{label}</label>
     <input
       type="file"
       {...register(name)}

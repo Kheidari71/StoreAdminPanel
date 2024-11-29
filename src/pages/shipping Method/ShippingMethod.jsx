@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa'; // Icons for actions
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
 
 import TableShippingMethod from './TableShippingMethod';
+import Modalcontainer from './ModallContainer';
 
 const ManageShippingMethod = () => {
   // Table data
- 
+  const [forceRender, setForceRender] = useState(0);
+  const [isModalOpen , setIsModalOpen]= useState(false);
+
+  const handleModalOpen = ()=>{
+    setIsModalOpen(true)
+  }
+  
+  const handleModalClose = ()=>{
+    setIsModalOpen(false)
+  }
 
   return (
     <div className="w-full p-8 font-inter ">
@@ -25,13 +35,13 @@ const ManageShippingMethod = () => {
             <FaSearch className="absolute dark:text-gray-200 sm:left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
 
-          {/* Plus Icon for Adding New Product */}
-          <AiOutlinePlus className="text-icon_pink w-8 h-8 cursor-pointer" />
-        </div>
-      </div>
-
-      {/* Product Table */}
-      <TableShippingMethod/>
+          <AiOutlinePlus  onClick={handleModalOpen} className="text-icon_pink w-8 h-8 cursor-pointer" />
+          <Modalcontainer setForceRender={setForceRender}  forceRender={forceRender} handleModalClose={handleModalClose} isModalOpen={isModalOpen} handleModalOpen={handleModalOpen} />
+                </div>
+              </div>
+        
+              {/* Product Table */}
+              <TableShippingMethod forceRender= {forceRender} setForceRender={setForceRender}/>
      
     </div>
   );

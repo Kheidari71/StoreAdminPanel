@@ -4,7 +4,8 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import { getGuarantiesServis } from '../../services/guaranties';
 import Actions from './Actions';
 
-const TableGuaranties = () => {
+const TableGuaranties = ({forceRender
+}) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
 
@@ -25,15 +26,18 @@ const TableGuaranties = () => {
 
     useEffect(() => {
         handleGetGuaranties();
-    }, []);
+    }, [forceRender]);
 
     const tableHeadInfo = [
         { key: "id", label: "#" },
         { key: "title", label: "Title" },
-        { key: "time", label: "Created At" },
+       
         { key: "descriptions", label: "Descriptions" },
+        { key: "duration", label: "Duration" },
+        { key: "unit", label: "Duration Unit" },
         { key: "actions", label: "Actions" }
     ];
+
 
     return (
         <div className='flex m-auto w-5/6 overflow-x-auto'>
@@ -54,8 +58,10 @@ const TableGuaranties = () => {
                                 <tr key={guarante.id} className="border-b font-inter">
                                     <td className='p-3'>{index + 1}</td>
                                     <td className='p-3'>{guarante.title}</td>
-                                    <td className='p-3'>{guarante.created_at}</td>
+                                    
                                     <td className='p-3'>{guarante.descriptions || "No description available"}</td>
+                                    <td className='p-3'>{guarante.length}</td>
+                                    <td className='p-3'>{guarante.length_unit}</td>
                                     <td className="p-3 py-3 sm:px-4 text-center">
                  <Actions/>
                 </td>

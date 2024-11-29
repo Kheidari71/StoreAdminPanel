@@ -10,12 +10,16 @@ import SelectInput from "../../form/SelectInput";
 import Checkbox from "../../form/Checkbox";
 import Button from "../../form/Button";
 
-const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
+const Modalcontainer = ({ isModalOpen, handleModalClose, parentId , setForceRender}) => {
 
+  console.log(parentId);
 
+  const location = useLocation();
+  console.log(location);
   const {
     register,
     handleSubmit,
+reset,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -27,24 +31,54 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
     }
   })
 
-  const onSubmit = (data) => {
-    console.log('Form submitted with data:', data);
-    handleAddCategory(data);
-  };
+  // const onSubmit = (data) => {
+  //   console.log('Form submitted with data:', data);
+  //   handleAddCategory(data);
+  // };
 
-  console.log(parentId);
+  // const handleAddcategory = async (data) => {
+  //   try {
+  //     console.log('Sending data:', data);
 
-  const location = useLocation();
-  console.log(location);
+  //     const formattedData = {
+  //       ...data,
+  //       is_active: data.is_active === "active" ? 1 : 0,
+  //       show_in_menu: data.show_in_menu ? 1 : 0,
+  //     };
+  //     if (parentId) formattedData.parent_id = parentId;
 
+  //     console.log('Formatted data:', formattedData);
 
-  const handleAddCategory = async (data) => {
+  //     const res = await addCategoryService(formattedData);
+
+  //     console.log('API Response:', res);
+
+  //     if (res.status === 200 || res.status === 202 || res.status === 201) {
+  //       console.log('Category data:', res.data.data);
+  //       console.log(res.status);
+  //       Alert("Record has successfully added", "success");
+
+  //       handleModalClose();
+  //       reset();
+  //       // Refresh data here
+  //     } else {
+  //       console.log('Non-200 status:', res.status);
+  //       Alert("Failed to add category", "error");
+  //     }
+  //   } catch (error) {
+  //     console.error('Error adding category:', error);
+  //   }
+  // };
+
+  //or >>>>>
+
+  const onSubmit = async (data) => {
     try {
       console.log('Sending data:', data);
 
       const formattedData = {
         ...data,
-        is_active: data.is_active === "Active" ? 1 : 0,
+        is_active: data.is_active === "active" ? 1 : 0,
         show_in_menu: data.show_in_menu ? 1 : 0,
       };
       if (parentId) formattedData.parent_id = parentId;
@@ -55,12 +89,15 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
 
       console.log('API Response:', res);
 
-      if (res.status === 200 || res.status === 202) {
+      if (res.status === 200 || res.status === 202 || res.status === 201) {
         console.log('Category data:', res.data.data);
         console.log(res.status);
         Alert("Record has successfully added", "success");
 
         handleModalClose();
+        reset();
+        setForceRender((prev) => prev + 1);
+       
         // Refresh data here
       } else {
         console.log('Non-200 status:', res.status);
@@ -131,7 +168,7 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
             placeholder="Enter description"
           />
           <FileInput
-            label={Image}
+            label="Category image"
             register={register}
             name="image"
             className="dark:bg-transparent dark:text-gray-300"
@@ -171,7 +208,7 @@ const Modalcontainer = ({ isModalOpen, handleModalClose, parentId }) => {
             <Button
               type="submit"
               className="bg-icon_orange text-white px-6 py-2 rounded-lg"
-              onClick={handleSubmit(onSubmit)}
+             
             >
               Save
             </Button>

@@ -6,7 +6,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import { getColorsService } from '../../services/colors';
 import Actions from './Actions';
 
-const TableManageColors = () => {
+const TableManageColors = ({forceRender}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -29,7 +29,7 @@ const TableManageColors = () => {
 
     useEffect(() => {
         handleGetColors()
-    }, []);
+    }, [forceRender]);
 
     const tableHead = [
         {

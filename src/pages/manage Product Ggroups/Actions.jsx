@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEdit, FaPlus, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
+import { FaEdit, FaShareAlt, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Actions = ({data , parentId}) => {
@@ -9,7 +9,7 @@ const Actions = ({data , parentId}) => {
                 {!parentId ?  <FaShareAlt className="text-green-500 cursor-pointer" /> : ""}
             </Link>
             <FaEdit className="text-yellow-500 cursor-pointer" />
-            <FaPlus className="text-pink-500 cursor-pointer" />
+          
           <FaTrashAlt className="text-red-500 cursor-pointer" />
         </div>
     );

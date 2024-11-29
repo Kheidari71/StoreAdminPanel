@@ -6,7 +6,7 @@ import { useLocation} from 'react-router-dom';
 import  handleError  from '../../App';
 import { useDataStore } from '../../zustand/dataStateStore';
 
-const TableManageProduct = ({ parentId}) => {
+const TableManageProduct = ({ parentId , setForceRender , forceRender}) => {
   const { data , setData} = useDataStore((state) => state); 
 
   const location = useLocation()
@@ -45,7 +45,7 @@ const TableManageProduct = ({ parentId}) => {
   useEffect(() => {
     handleGetCategories();
     console.log(parentId)
-  }, [parentId]);
+  }, [parentId , forceRender]);
 
   const tabaleHeadInfo = [
     { key: 'id', label: '#' },

@@ -22,7 +22,7 @@ const Permissions = () => {
                   </div>
         
                   {/* Plus Icon for Adding New Product */}
-                  <AiOutlinePlus className="text-icon_pink w-8 h-8 cursor-pointer" />
+                  
                 </div>
               </div>
         

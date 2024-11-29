@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import TableGuaranties from './TableGuaranties';
 import { FaSearch } from 'react-icons/fa';
+import Modalcontainer from './ModallContainer';
 
 const ManageGuaranties = () => {
+  const [forceRender , setForceRender]= useState(0);
+  const [isModalOpen , setIsModalOpen]= useState(false);
+  const handleModalOpen = ()=>{
+    setIsModalOpen(true)
+  }
   
+  const handleModalClose = ()=>{
+    setIsModalOpen(false)
+  }
         return (
             <div className="w-full p-8 font-inter">
               {/* Title & Search Bar */}
@@ -23,12 +32,13 @@ const ManageGuaranties = () => {
                   </div>
         
                   {/* Plus Icon for Adding New Product */}
-                  <AiOutlinePlus className="text-icon_pink w-8 h-8 cursor-pointer" />
+                  <AiOutlinePlus  onClick={handleModalOpen} className="text-icon_pink w-8 h-8 cursor-pointer" />
+                  <Modalcontainer setForceRender={setForceRender}  forceRender={forceRender} handleModalClose={handleModalClose} isModalOpen={isModalOpen} handleModalOpen={handleModalOpen} />
                 </div>
               </div>
         
               {/* Product Table */}
-              <TableGuaranties/>
+              <TableGuaranties forceRender={forceRender} setForceRender={setForceRender}/>
              
             </div>
     );

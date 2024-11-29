@@ -4,7 +4,7 @@ import {useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
 import TableManageProductGroup from './TableManageProductGroup';
 import Modalcontainer from './ModallContainer';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useDataStore } from '../../zustand/dataStateStore';
 
 
@@ -13,7 +13,6 @@ const ManageProductsGroup = () => {
 
   const params = useParams(); 
   const parentId = params.parentId;
-
   
   // Table data
  const [isModalOpen , setIsModalOpen]= useState(false);
@@ -30,7 +29,9 @@ const handleModalClose = ()=>{
       {/* Title & Search Bar */}
       <div className="flex justify-between items-center mb-8">
         {/* <h1 className="text-2xl dark:text-gray-100 font-semibold">{data[0].title}</h1> */}
-        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage Produt Group</h1>
+    
+        {/* <h1 className="text-2xl dark:text-gray-100 font-semibold">{!parentId ? "Manage Product Grouop" : location.state.data.title}</h1> */}
+        <h1 className="text-2xl dark:text-gray-100 font-semibold">Manage product group</h1>
         <div className="flex items-center space-x-4">
           {/* Search Input */}
           <div className="relative">
@@ -50,7 +51,7 @@ const handleModalClose = ()=>{
       </div>
 
       {/* Product Table */}
-      <TableManageProductGroup params= {params} parentId={parentId}/>
+      <TableManageProductGroup params= {params} parentId={parentId} forceRender={forceRender} setForceRender={setForceRender}/>
 
       <Outlet/>
      

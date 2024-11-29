@@ -3,7 +3,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import Actions from '../guaranties/Actions';
 import apiClient from '../../services/apiService';
 
-const TableShippingMethod = () => {
+const TableShippingMethod = ({forceRender}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -22,12 +22,13 @@ const TableShippingMethod = () => {
 
     useEffect(() => {
         handleGetShippingMethod()
-    }, []);
+    }, [forceRender]);
 
     const tableHeadInfo = [
         { key: "id", title: "#" },
         { key: "title", title: "Title" },
         { key: "fee", title: "Shipping Fee" },
+        { key: "delivery time", title: "Delivery time" },
         { key: "actions", title: "Actions" },
     ]
 
@@ -55,6 +56,20 @@ const TableShippingMethod = () => {
                             <td className="p-">{index + 1}</td>
                             <td className="p-3">{shipping.title}</td>
                             <td className="p-3">{shipping.amount}</td>
+                            <td className="flex justify-center items-center p-3">
+                            <div
+                                        className=" h-5 rounded text-center p-4'"
+                                    
+                                    >{shipping.time_unit}</div>
+                                    <div
+                                        className=" h-5 rounded text-center p-4'"
+                                    
+                                    >{shipping.time}</div>
+                              </td>
+                            <div
+                                        className="w-5 h-5 rounded text-center p-4'"
+                                    
+                                    ></div>
                             <td className="p-3 text-center">
                                <Actions/>
                             </td>

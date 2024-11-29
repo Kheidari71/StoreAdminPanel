@@ -3,10 +3,12 @@ import { FaSearch, FaShareAlt, FaEdit, FaPlus, FaTrashAlt } from 'react-icons/fa
 import { AiOutlinePlus } from 'react-icons/ai'; // Plus icon for adding products
 
 const ManageProducts = () => {
-  useEffect(() => {
-    // Simulate an error in this component after the first render
-    throw new Error("Something went wrong in ManageProducts!");
-  }, []); // Empty dependency array ensures it runs only once
+
+  
+  // useEffect(() => {
+  //   // Simulate an error in this component after the first render
+  //   throw new Error("Something went wrong in ManageProducts!");
+  // }, []); // Empty dependency array ensures it runs only once
 
   // Table data
   const tableData = [

@@ -5,3 +5,7 @@ import httpService from "./httpService";
 export const getColorsService = ()=>{
     return httpService("/admin/colors")
 }
+
+export const addColorsService = (data)=>{
+    return httpService("/admin/colors" , "post" , data)
+}
